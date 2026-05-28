@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy
 import pandas
+from pathlib import Path
+
 
 def type_check(obj,obj_type):
     if not isinstance(obj,obj_type): raise TypeError(f'{obj} is required to be {obj_type}')
@@ -9,7 +11,7 @@ def plotter(dataframe,path:Path,x_key,y_keys,y_colors,title='',x_label='',y_labe
     if not (dataframe and x_key and y_keys and y_colors): raise ValueError('from util/processer/plotter.py plotter: not enough arguments')
     args = {
         'dataframe' :   pandas.DataFrame,
-        'path'      :   list, 
+        'path'      :   Path,
         'x_key'     :   str,
         'y_keys'    :   list,
         'y_colors'  :   list,
@@ -49,5 +51,5 @@ def plotter(dataframe,path:Path,x_key,y_keys,y_colors,title='',x_label='',y_labe
         facecolor = "white",
         )
 
-    plt.savefig(f"{Path}{title}.png", dpi=300, bbox_inches='tight')
+    plt.savefig(f"{path}{title}.png", dpi=300, bbox_inches='tight')
     plt.close()
