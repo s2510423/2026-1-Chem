@@ -76,11 +76,15 @@ for i in range(1000001):
     x_data.append(co2.mass)
     y_data.append(caco3.mass)
     print(f"[Success] CO2 {co2.mass}%:      CaCO3 {caco3.mass}g")
-plotter.plotter(
-    dataframe =  pd.DataFrame({
+data = pd.DataFrame({
         'CO2': x_data,
         'CaCO3': y_data
-    }),          
+    }),      
+peak = df['CaCO3'].idxmax()
+print(f'[PEAK] CO2 {df.loc[peak, "CO2"]}%, CaCO3 {df.loc[peak, "CaCO3"]} g')
+
+plotter.plotter(
+    dataframe =  data,
     path        = r'C:\Users\user\Downloads',
     x_key       = 'CO2', 
     y_keys      = ['CaCO3'],
