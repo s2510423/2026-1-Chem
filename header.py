@@ -36,7 +36,7 @@ version = {__version__}
 Bootleg Execution Starting...
         ''')
 def log():
-    print(r'''
+    print(rf'''
 
 /*-------------------------------------------*\
         Bootleg Scientific Data Toolkit        

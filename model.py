@@ -1,4 +1,3 @@
-import math
 
 import header
 import plotter
@@ -57,7 +56,7 @@ y_data = []
 
 for i in range(1000001):
 
-    co2.mass = i*purity/1000
+    co2.mass = i*purity/10000
 
     cao.mass = mass_total - co2.mass
 
@@ -76,19 +75,18 @@ for i in range(1000001):
 
     x_data.append(co2.mass)
     y_data.append(caco3.mass)
-
-data = pd.DataFrame({
-    'CO2': x_data,
-    'CaCO3': y_data
-})
+    print(f"[Success] CO2 {co2.mass}%:      CaCO3 {caco3.mass}g")
 plotter.plotter(
-    dataframe = df_box,             
-    path      = "./",                # [통과] str 유형
-    x_key     = "co2_column",        # [통과] str 유형 (상자 안의 x축 이름)
-    y_keys    = ["yield_column"],    # [통과] list 유형 (상자 안의 y축 이름들, 대괄호 필수!)
-    y_colors  = ["cyan"],            # [통과] list 유형 (색상 이름, 대괄호 필수!)
-    title     = "Stoichiometry_Optimization",
-    x_label   = "CO2 Input (g)",
-    y_label   = "CaCO3 Yield (g)"
+    dataframe =  pd.DataFrame({
+        'CO2': x_data,
+        'CaCO3': y_data
+    }),          
+    path        = r'C:\Users\user\Downloads',
+    x_key       = 'CO2', 
+    y_keys      = ['CaCO3'],
+    y_colors    = ["red"],
+    title       = f"탄산칼슘 결정화 반응의 양적관계 수치 모델링 [이산화탄소 순도: {purity*100}%]",
+    x_label     = "CO2 Input Mass (%)",
+    y_label     = "CaCO3 Yield Mass (%)",
+    xticks      = False
 )
-
